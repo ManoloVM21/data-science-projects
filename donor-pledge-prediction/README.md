@@ -4,7 +4,7 @@ This project was developed in collaboration with a university Data Science Socie
 ## My Contribution
 - Data cleaning and preprocessing
 - Feature engineering
-- Model development (Random Forest)
+- Model development (XGBoost, with a Ridge regression baseline)
 - Model evaluation and interpretation
 
 # Donor Pledge Amount Prediction
@@ -32,7 +32,7 @@ The Organization's fundraising agents manually prioritize donor outreach with li
 | **Model** | XGBoost Regressor with RandomizedSearchCV (25 combinations, 3-fold CV) |
 | **Evaluation** | MAE and RMSE in original dollar scale via `expm1` — MAE preferred because RMSE is dominated by mega-donors |
 
-**Validation result:** MAE ≈ $1,145 · outperforms naïve "repeat last year" baseline across all donation ranges
+**Validation result:** MAE ≈ $1,146 (R² = 0.750 excluding major donors). On raw dollar MAE, this does *not* beat a naïve "repeat most recent pledge" baseline ($1,088 MAE) — persistence is a strong benchmark here since most donors renew at the same amount. The model's value is in producing a consistent ranked estimate for *every* donor, including new/lapsed donors a persistence rule can't handle, plus the SHAP-based explainability and segmentation a baseline can't supply. See the [full report](donor_prediction.html) for the honest comparison.
 
 ---
 
